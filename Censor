@@ -1,0 +1,39 @@
+def censor(text, word):
+    str(text)
+    str(word)
+    y=0
+    z=0
+    correction=""
+    while y < len(text):
+        #print "y: ", y, text[y]
+        #print "z: ",z, len(word)
+        if text[y]!=word[z]:
+            #print "0)if y: ", y, text[y]
+            #print "0)if z: ", z, word[z]
+            correction = correction+text[y]
+            y=y+1
+            z=0
+        else:
+            #print "1)if y: ", y, text[y]
+            #print "1)if z: ", z, word[z]
+            if z==len(word)-1:
+                #print "2)if z: ", z, word[z]
+                correction = correction[0:(y-z)]
+                for r in range(len(word)):
+                    correction = correction + "*"
+            if z==len(word)-1:
+                z=0
+                y=y+1
+                #print "Correction: ",correction
+            else:
+                correction = correction+text[y]
+                z=z+1
+                y=y+1
+                #print "Correction: ",correction
+
+    return correction
+
+phrase = raw_input("What phrase should we start with?")
+censorship = raw_input("What should be censored out?")   
+
+print censor(phrase, censorship)
