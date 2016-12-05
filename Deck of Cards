@@ -1,0 +1,42 @@
+class Card:
+    def __init__(self, name, suit, rank, order):
+		self.name = name
+		self.suit = suit
+		self.rank = rank
+		self.order = order
+
+
+def createDeck():
+    #creates a full deck of cards
+    x = 52
+    r = 1
+    while (x>0):
+        if x>39:
+	        s = "C"
+        elif x>26:
+	        s = "S"
+    	elif x>13:
+        	s = "D"
+    	else:
+        	s = "H"
+
+    	n = str(r)+s
+    	newCard=Card(n,s,r,x)
+    	deck.append(newCard)
+
+    	r = r+1
+
+    	if r == 14: 
+    		r = 1
+    	x=x-1
+
+def printDeck():
+    #prints the whole deck out in order
+    for card in deck:
+        print card.order, "  ", card.name
+    
+deck = []
+
+
+createDeck()
+printDeck()
