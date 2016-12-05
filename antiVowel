@@ -1,0 +1,17 @@
+def anti_vowel(text):
+    vowels = "aeiouAEIOU"
+    newtext=""
+
+    for each in text:
+        count=0
+        for k in vowels:
+            if k==each:
+                break 
+            else:
+                count = count+1
+                if count==10:
+                    newtext=newtext+each
+    return newtext
+
+stuff=raw_input("What text should we remove the vowels from?")
+print anti_vowel(stuff)
