@@ -1,16 +1,20 @@
+from random import randint
+import operator
+
 class Card:
+    #initialization of the Cards
     def __init__(self, name, suit, rank, order):
 		self.name = name
 		self.suit = suit
 		self.rank = rank
 		self.order = order
 
-
 def createDeck():
     #creates a full deck of cards
     x = 52
     r = 1
     while (x>0):
+        #creates suits in order
         if x>39:
 	        s = "C"
         elif x>26:
@@ -21,11 +25,12 @@ def createDeck():
         	s = "H"
 
     	n = str(r)+s
+        #create each card with its proper attributes
     	newCard=Card(n,s,r,x)
     	deck.append(newCard)
 
     	r = r+1
-
+        #make sure you only have 13 of each suit. we would not want to have any cards higher than a King.
     	if r == 14: 
     		r = 1
     	x=x-1
@@ -33,10 +38,101 @@ def createDeck():
 def printDeck():
     #prints the whole deck out in order
     for card in deck:
-        print card.order, "  ", card.name
+        print card.name
     
+def shuffle():
+    #this will shuffle the order of the deck by inputing a random number into the Order attribute of the card
+    #and then sorting the deck by the new order attribute
+    x = 52
+    r = 1
+    while (x>0):
+        #this will make sure the suits are still created evenly
+        if x>39:
+	        s = "C"
+        elif x>26:
+	        s = "S"
+    	elif x>13:
+        	s = "D"
+    	else:
+        	s = "H"
+
+    	n = str(r)+s
+        #create a random integer to place in for the order attribute so we can sort by it at the end.
+	y = randint(0,100)
+    	newCard=Card(n,s,r,y)
+    	shDeck.append(newCard)
+
+    	r = r+1
+        #again make sure we only have 13 of each suit.
+    	if r == 14: 
+    		r = 1
+    	x=x-1
+    shDeck.sort(key=operator.attrgetter('order'))
+
+def printshDeck():
+    #prints the whole deck out in order
+    for card in shDeck:
+        print card.name
+
+def deal():
+    #deals the cards to 4 players
+    p1 = []
+    p2 = []
+    p3 = []
+    p4 = []
+    x = 1
+    for card in shDeck:
+        #this will deal in a clockwise manner like you were actually dealing to people at a card table
+        #i prefered this over just just doing a slice of 12 and 12 and 12 and 12. this seemed more realistic.
+        if x%4 ==0:
+            p1.append(card)
+        elif x%4 == 1:
+            p2.append(card)
+        elif x%4 == 2:
+            p3.append(card)
+        else:
+            p4.append(card)
+        x=x+1
+    #this will put them in a more readable order. not the way i would organize them for play but a console readable way
+    p1.sort(key=operator.attrgetter('rank'))
+    p2.sort(key=operator.attrgetter('rank'))
+    p3.sort(key=operator.attrgetter('rank'))
+    p4.sort(key=operator.attrgetter('rank'))
+    
+    #prints each players hand to the screen
+    print "Player One was dealt the following cards:"
+    for card in p1:
+        print card.name
+    print "Player Two was dealt the following cards:"
+    for card in p2:
+        print card.name
+    print "Player Three was dealt the following cards:"
+    for card in p3:
+        print card.name
+    print "Player Four was dealt the following cards:"
+    for card in p4:
+        print card.name
+
+#need to have the deck and the shuffled Deck as globally accessable variables
 deck = []
+shDeck = []
 
-
-createDeck()
-printDeck()
+#ask user if they want to make the Brand new deck or not
+check = raw_input("Would you like to create a perfectly new deck of cards? y/n:   ")
+if check == "y":
+    #if they said yes, make the deck and display it for them
+    createDeck()
+    printDeck()
+#find out if they want to shuffle the deck to play a game
+check = raw_input("Would you like to shuffle a deck of cards and deal view the deck? \n We might be able to play a game later... y/n:   ")
+if check == "y":
+    #if they said yes then shuffle the deck and display it
+    shuffle()
+    printshDeck()
+    #since we have a shuffled deck ready, lets see if they want to deal it
+    check = raw_input("Would you like to deal the deck of cards to 4 players and view the results? y/n:   ")
+    if check == "y":
+        #if they said yes, then deal the deck
+        deal()
+#Wait here to close the program down, incase they are not in a console and want to review the results.
+check = raw_input("Press any key to close program:   ")
