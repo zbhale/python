@@ -1,0 +1,22 @@
+def factorial(x):
+    g=True
+    z=x
+    while g==True:
+        if x<0:
+            print "You cannot find the Factorial of a negative integer"
+            break
+        elif x!=int(x):
+            print "You can only find the Factorial of an integer"
+            break
+        elif x == 0 or x==1:
+            return 1
+            break
+        else:
+            g=False
+    while x>1:
+        x=x-1
+        z=z*x
+    return z
+
+print "factorial(4)"
+print factorial(4)
