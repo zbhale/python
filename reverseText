@@ -1,0 +1,14 @@
+def reverse(text):
+
+    rtext=""
+    x=len(text)-1
+    y=1
+    while x >=0:
+        k=text[x]
+        rtext= rtext+k
+        y=y+1
+        x=x-1
+    print rtext
+    return rtext
+stuff = raw_input("What text whould we reverse?")
+reverse(stuff)
