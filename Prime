@@ -1,0 +1,26 @@
+def is_prime(x):
+    result=0
+    n=2
+    if x<2:
+        print "False"
+        return False
+    if x==2:
+        print "True"
+        return True
+    if x==3:
+        print "True"
+        return True
+    while n<x:
+        result=x%n
+        if result==0:
+            n=n+1
+            print "False"
+            return False
+            break
+        elif result != 0:
+            n=n+1
+    print "True"
+    return True
+
+num = raw_input("What number would you like to check?")
+is_prime(num)
