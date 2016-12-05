@@ -1,0 +1,22 @@
+pyg = 'ay'
+
+original = raw_input('Enter a word:')
+
+if len(original) > 0 and original.isalpha() and original[0] != "a" and original[0] != "e" and original[0] != "i" and original[0] != "o" and original[0] != "u":
+    word = original.lower()
+    first= word[0]
+    new_word = word+first+pyg
+    new_word = new_word[1:len(new_word)]
+    new_word[0].upper()
+    
+    print new_word
+    
+elif len(original) > 0 and original.isalpha():
+    word = original.lower()
+    new_word = word+pyg
+    new_word[0].upper()
+    
+    print new_word
+    pep
+else:
+    print 'empty'
